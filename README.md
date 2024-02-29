@@ -6,11 +6,11 @@ Let's dive into Blazor's state management features, focusing on ways to share da
 
 **Features Demonstrated**:
 
-Cascading Parameters: Passing data down a component hierarchy.
+**Cascading Parameters**: Passing data down a component hierarchy
 
-State Management Services: Creating a centralized service to hold application state.
+**State Management Services**: Creating a centralized service to hold application state
 
-Event Handling: Reacting to changes and updating the UI across components.
+**Event Handling**: Reacting to changes and updating the UI across components
 
 **Setup**
 
@@ -18,9 +18,9 @@ Event Handling: Reacting to changes and updating the UI across components.
 
 **Models**
 
-ShoppingCartItem.cs (Inside a Models folder):
+**ShoppingCartItem.cs (Inside a Models folder)**:
 
-C#
+```csharp
 namespace ShoppingCartApp.Models;
 
 public class ShoppingCartItem
@@ -29,12 +29,13 @@ public class ShoppingCartItem
     public decimal Price { get; set; }
     public int Quantity { get; set; }
 }
-Usa el código con precaución.
-Services
+```
 
-ShoppingCartService.cs (Create a Services folder):
+**Services**
 
-C#
+**ShoppingCartService.cs (Create a Services folder)**:
+
+```csharp
 namespace ShoppingCartApp.Services;
 
 public class ShoppingCartService
@@ -53,12 +54,13 @@ public class ShoppingCartService
 
     // ... (potentially more methods like RemoveItem, UpdateQuantity, etc.)
 }
-Usa el código con precaución.
-Components
+```
 
-ShoppingCart.razor  (Inside Shared folder):
+**Components**
 
-Razor CSHTML
+**ShoppingCart.razor  (Inside Shared folder)**:
+
+```cshtml
 @inject ShoppingCartService CartService
 @implements IDisposable 
 
@@ -82,10 +84,11 @@ Razor CSHTML
         CartService.OnChange -= StateHasChanged; // Unsubscribe
     }
 }
-Usa el código con precaución.
-ProductDisplay.razor  (Inside Pages folder):
+```
 
-Razor CSHTML
+**ProductDisplay.razor  (Inside Pages folder)**:
+
+```cshtml
 @page "/product-display"
 @inject ShoppingCartService CartService
 
@@ -93,10 +96,11 @@ Razor CSHTML
     <h1>Products</h1>
     @* Display products and have "Add to Cart" buttons that call CartService.AddItem *@
 </CascadingValue>
-Usa el código con precaución.
-In your App.razor:
+```
 
-Razor CSHTML
+**In your App.razor**:
+
+```cshtml
 <Router AppAssembly="@typeof(Program).Assembly">
     <Found Context="routeData">
         <RouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
@@ -115,7 +119,7 @@ Razor CSHTML
         builder.Services.AddScoped<ShoppingCartService>();
     }
 }
-Usa el código con precaución.
+```
 
 
 
